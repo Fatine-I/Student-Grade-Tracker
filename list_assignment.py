@@ -1,15 +1,18 @@
 import time
 import datetime
 
+assignment_types=("homework","exam")
 class Assignment(Course):
     def __init__(self, subject,title,assignment_type,score,max_score,due_date):#.....constructor method for class Assignment objects
         self.subject=subject
         self.title=title
-        self.assignment_type=("homework","exam")
+        self.assignment_type=assignment_type
         self.score=score
         self.max_score=max_score
         self.due_date=datetime.datetime.strptime('%Y-%m-%d %H:%M:%S').date()
         self.today=datetime.datetime.today()
+        self.homework=Homework()
+        self.exam=Exam()
         super().__init__()
 
 
@@ -38,9 +41,17 @@ class Assignment(Course):
                 if self.assignment_type not in Assignment.assignment_type:
                     raise ValueError("Invalid assignment type.")
                 if self.assignment_type == "homework":
-                    homework_list=Homework(self.subject,self.title,self.due_date)
+                    self.homework.add_homework(
+                        self.subject,
+                        self.title,
+                        self.due_date
+                    )
                 elif self.assignment_type == "exam":
-                                    exam_list=Exam(self.subject,self.title,self.due_date)
+                    self.exam.add_exam(
+                        self.subject,
+                        self.title,
+                        self.due_date
+                    )
             except ValueError as e:
                 print(e)
 
@@ -73,9 +84,90 @@ class Assignment(Course):
     
 
     def list_assignment(self):
-        print("Pending assignments:\n")
-        print("Graded assignments:\n")
 
+        print("   PENDING ASSIGNMENTS    ")
+        print("________________________\n")
+
+        if self.homework.homework_list:
+            print("HOMEWORK\n")
+            print("________")
+
+        for number, homework in enumerate(
+                self.homework.homework_list, start=1):
+
+            print(f"Homework {number}")
+            print(f"Subject:  {homework['subject']}")
+            print(f"Title:    {homework['title']}")
+            print(f"Due date: {homework['due_date']}")
+            print()
+
+        else:
+            print("No homework assignments.\n")
+
+
+        if self.exam.exam_list:
+            print("EXAMS")
+            print("_____")
+
+        for number, exam in enumerate(
+                self.exam.exam_list, start=1):
+
+            print(f"Exam {number}")
+            print(f"Subject:  {exam['subject']}")
+            print(f"Title:    {exam['title']}")
+            print(f"Due date: {exam['due_date']}")
+            print()
+
+        else:
+            print("No exams.\n")
+
+
+    def display_assignment(self, assignment, assignment_type):
+        print(f"\n{assignment_type}")
+        print(f"Subject:  {assignment['subject']}")
+        print(f"Title:    {assignment['title']}")
+        print(f"Due date: {assignment['due_date']}")
+
+
+    def filter_assignment(self):
+        if not self.homework.homework_list and not self.exam.exam_list:
+            print("\nThere are no assignments to filter.")
+            return
+
+        keyword = input("\nEnter subject, assignment type, or month to filter: ").strip().lower()
+
+        found = False
+        print("FILTERED ASSIGNMENTS")
+        print("____________________")
+
+        for homework in self.homework.homework_list:
+            due_date = homework["due_date"]
+
+            if (
+            keyword in homework["subject"].lower()#..................................using a keyword in subject
+            or keyword in "homework"#................................................using a keyword in the assignment_type ('homework')
+            or keyword in due_date.strftime("%B").lower()#...........................using a keyword in the month name
+            or keyword in due_date.strftime("%b").lower()#...........................using a keyword in the short-term name of the month (ex. Aug instead of August)
+            or keyword == due_date.strftime("%m")#...................................using a keyword in the month number
+            ):
+                self.display_assignment(homework, "Homework")
+                found = True
+
+        for exam in self.exam.exam_list:
+            due_date = exam["due_date"]
+
+            if (
+            keyword in exam["subject"].lower()
+            or keyword in "exam"
+            or keyword in due_date.strftime("%B").lower()
+            or keyword in due_date.strftime("%b").lower()
+            or keyword == due_date.strftime("%m")
+            ):
+                self.display_assignment(exam, "Exam")
+                found = True
+
+        if not found:
+            print("\nNo assignments found matching:", keyword)
             
 
         
@@ -88,19 +180,25 @@ class Course:#..................................................................
             'Computer_Science':('Computer Architecture','Software Applications','Programming')
         }
 
-class Homework():
-    def __init__(self,subject,title,due_date):
-        self.homework_list=[]
-        self.subject=subject
-        self.title=title
-        self.due_date=datetime.datetime.strptime('%Y-%m-%d %H:%M:%S').date()
-        self.homework_list.append({"subject": subject, "title": title, "due_date": due_date})
+class Homework:
+    def __init__(self):
+        self.homework_list = []
+
+    def add_homework(self, subject, title, due_date):
+        self.homework_list.append({
+            "subject": subject,
+            "title": title,
+            "due_date": due_date
+        })
 
 class Exam:
-    def __init__(self,subject,title,due_date):
-        self.exam_list=[]
-        self.subject=subject
-        self.title=title
-        self.due_date=datetime.datetime.strptime('%Y-%m-%d %H:%M:%S').date()
-        self.exam_list.append({"subject": subject, "title": title, "due_date": due_date})
+    def __init__(self):
+        self.exam_list = []
+
+    def add_exam(self, subject, title, due_date):
+        self.exam_list.append({
+            "subject": subject,
+            "title": title,
+            "due_date": due_date
+        })
 
