@@ -52,7 +52,7 @@ class GradeTracker(Course):
     def get_max_score(self):
         while True:
             try:
-                max_score = float(input("Maximun score: "))
+                max_score = float(input("Maximum score: "))
                 if max_score <= 0:
                     raise ValueError("Maximum score must be greater than 0.")
                 return max_score
