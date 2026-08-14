@@ -1,0 +1,33 @@
+Grade Tracker Reflection
+
+
+What I Learned:
+I learned how to organize a Python program with classes and methods instead of placing all
+logic in one large block; learnt how to link classes and their methods and access objects of
+one class into another one without writing duplicated same-function properties or methods. I
+practiced inheritance by creating Homework and Exam subclasses from Assignment. I learnt
+that inheritance can lead to unwanted errors and duplication if not used properly in long code
+with many lines. I had to first understand why I want inheritance and how I want it to function,
+and not just want to access the parent through the child class. I also learned how lists, loops,
+conditionals, and input-validation functions work together in a menu-driven program. Also,
+alongside classes, I learnt how to write properties, lists, loops, conditionals, and input
+functions to facilitate the input of data.
+
+Challenges I Faced:
+One challenge was validating several kinds of input: numeric scores, score limits, and dates.
+Another challenge was designing the summary so that assignments with different maximum
+scores could be compared fairly. I solved this by calculating each assignment percentage
+and using percentages for averages and highest/lowest results. I faced the challenge of
+lacking experience. It wasn't so easy to debug a large code for me. Using a class's objects in
+another class or just using inheritance also challenged me, since I was having a dilemma of
+whether to create objects of a class into the other or just use inheritance. I also struggled
+with when and where to use the super method.
+
+How I Would Improve It:
+With more time, I would add automated tests, low-score warnings, sorting by due date, and
+an undo-last-entry feature. I would also improve the interface with colored output and
+possibly add optional file or database storage in a future version, while keeping the current
+session-only behavior for this assignment. I would improve it by making it possible for a
+student or facilitator using this program to mention whether the assignment was graded or
+not, and to mention if the assignment has been submitted or not so that the grades are put
+when the assignment has been submitted.
