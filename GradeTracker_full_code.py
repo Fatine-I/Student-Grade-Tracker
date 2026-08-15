@@ -1,5 +1,7 @@
 import time
-import datetime from datetimeclass Course:
+from datetime import datetime
+
+class Course:
     def __init__(self):
         self.course={
             'Math':('Algebra','Geometry','Trigonometry'),
