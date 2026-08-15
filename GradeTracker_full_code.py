@@ -8,3 +8,5 @@ class Course:
             'Physics':('Thermodynamics', 'Mechanics', 'Electromagnetism'),
             'Computer_Science':('Computer Architecture','Software Applications','Programming')
         }
+
+        
