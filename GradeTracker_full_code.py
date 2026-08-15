@@ -9,7 +9,7 @@ class Course:
             'Computer_Science':('Computer Architecture','Software Applications','Programming')
         }
 
-        class Assignment(Course):
+class Assignment(Course):
     def __init__(self, subject,title,score,max_score,due_date,assignment_type):#.....constructor method for class Assignment objects
         self.subject=subject
         self.title=title
