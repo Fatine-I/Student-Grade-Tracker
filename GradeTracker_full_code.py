@@ -17,3 +17,4 @@ class Assignment(Course):
         self.max_score=max_score
         self.due_date=due_date
         self.assignment_type=assignment_type
+
