@@ -32,3 +32,4 @@ class Exam(Assignment):
             "grade": graded,
             "scores": [] if score is None else [score]
         })
+
