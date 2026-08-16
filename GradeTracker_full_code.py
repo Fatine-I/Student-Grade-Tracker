@@ -46,7 +46,10 @@ class Homework(Assignment):
             "max_score": max_score,
             "graded": graded,
             "scores": [] if score is None else [score]
-        })class GradeTracker(Course):
+        })
+
+        
+class GradeTracker(Course):
     def __init__(self):
         super().__init__()
         self.assignments=[]
@@ -222,3 +225,5 @@ class Homework(Assignment):
         print(f"{highest.title} | {highest.subject}) | {highest_percentage:.2f}%")
         print("\nLowest scoring assignment:\n")
         print(f"{lowest.title} | {lowest.subject}) | {lowest_percentage:.2f}%")    
+
+>>>>>>> 5adfc4c057fa048afff2f01f59513990de2f29e9
