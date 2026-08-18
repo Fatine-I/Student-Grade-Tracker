@@ -174,3 +174,15 @@ class GradeTracker(Course):
         print(f"{highest.title} | {highest.subject}) | {highest_percentage:.2f}%")
         print("\nLowest scoring assignment:\n")
         print(f"{lowest.title} | {lowest.subject}) | {lowest_percentage:.2f}%")    
+
+
+    def undo_last_entry(self):
+            if not self.assignments:
+                        print("No assignments recorded.")
+                        return
+            for number, assignment in enumerate(self.assignments,start=1):
+                self.assignments.pop()
+            print("last item removed successfully!") 
+            
+    
+    
