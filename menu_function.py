@@ -1,4 +1,3 @@
-#Initial setup tested with a working print statement
 def main():
     tracker=GradeTracker()
     while True:
@@ -8,7 +7,8 @@ def main():
         print("3. List assignments")
         print("4.Filter assignments")
         print("5. Show summary")
-        print("6. Exit")
+        print("6. Undo last entry")
+        print("7. Exit")
         choice=input("\nChoose an option: ").strip()
         if choice=="1":
             tracker.add_homework() 
@@ -26,6 +26,9 @@ def main():
             tracker.summary()
             input("\nPress Enter to return to the main menu")
         elif choice=="6":
+            tracker.undo_last_entry()
+            input("\nPress Enter to return to the main menu")
+        elif choice=="7":
             break
         else:
             print("\nInvalid choice. Please choose 1-6")
