@@ -1,9 +1,7 @@
+import time#....................................................................................................................................................................importing time library
+from datetime import datetime#..................................................................................................................................................importing datetime method from datetime library
 
-import time
-from datetime import datetime
-
-
-class Course:
+class Course:#..................................................................................................................................................................class containing the list of subjects and titles in them. any subject or title not in this class won't be recorded
     def __init__(self):
         self.course={
             'Math':('Algebra','Geometry','Trigonometry'),
@@ -11,12 +9,8 @@ class Course:
             'Computer_Science':('Computer Architecture','Software Applications','Programming')
         }
 
-
-
-
-
-class Assignment(Course):
-    def __init__(self, subject,title,score,max_score,due_date,assignment_type):#.....constructor method for class Assignment objects
+class Assignment(Course):#......................................................................................................................................................class Assignment containing the properties of assignments to be recorded
+    def __init__(self, subject,title,score,max_score,due_date,assignment_type):
         self.subject=subject
         self.title=title
         self.score=score
@@ -24,11 +18,7 @@ class Assignment(Course):
         self.due_date=due_date
         self.assignment_type=assignment_type
 
-
-
-
-
-class Exam(Assignment):
+class Exam(Assignment):#........................................................................................................................................................class exam containing method to add exam assignments
     def __init__(self,subject,title,score,max_score,due_date):
         super().__init__(subject,title,score,max_score,due_date,"Exam")
         self.exam_list = []
@@ -43,11 +33,7 @@ class Exam(Assignment):
             "scores": [] if score is None else [score]
         })
 
-
-
-
-
-class Homework(Assignment):
+class Homework(Assignment):#....................................................................................................................................................class homework containing method to add homework assignments
     def __init__(self,subject,title,score,max_score,due_date):
         super().__init__(subject,title,score,max_score,due_date,"Homework")
         self.homework_list = []
@@ -63,10 +49,7 @@ class Homework(Assignment):
         })
 
 
-
-
-
-class GradeTracker(Course):
+class GradeTracker(Course):#...................................................................................................................................................class GradeTracker containing properties and methods to add scores and record them
     def __init__(self):
         super().__init__()
         self.assignments=[]
@@ -243,6 +226,7 @@ class GradeTracker(Course):
         print("\nLowest scoring assignment:\n")
         print(f"{lowest.title} | {lowest.subject}) | {lowest_percentage:.2f}%")
 
+        
     def undo_last_entry(self):
         if not self.assignments:
                     print("No assignments recorded.")
@@ -254,11 +238,7 @@ class GradeTracker(Course):
 
 
 
-
-
-
-
-def main():
+def main():#...................................................................................................................................................................main function for executing the codes
     tracker=GradeTracker()
     while True:
         print("GRADE TRACKER\n\n\n")
@@ -297,5 +277,3 @@ def main():
 if __name__=="__main__":
     print("Initial setup test: program started successfully.") 
     main()
-
-    
